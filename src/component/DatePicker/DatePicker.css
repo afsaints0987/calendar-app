@@ -1,0 +1,24 @@
+.datepicker {
+    display: block;
+    margin-right: 14.5rem;
+}
+
+.datepicker #date {
+    padding: 10px 5px;
+    font-size: 15px;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.input-container {
+    position: relative;
+    display: inline-block;
+}
+
+.calendar-icon {
+    position: absolute;
+    top: 50%;
+    right: 85%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}

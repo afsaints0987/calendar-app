@@ -19,5 +19,9 @@ body {
     justify-content: center;
     align-items: center;
     margin: auto;
-    height: 50vh;
+    height: 75vh;
+}
+
+.disabled {
+    color: var(--disabled)
 }

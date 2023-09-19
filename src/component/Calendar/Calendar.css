@@ -1,52 +1,100 @@
 .calendar {
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-    border: 1px solid #eeeeee;
-    padding: 20px 5px;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  border: 1px solid #eeeeee;
+  padding: 20px 5px;
 }
 
 .calendar-header {
-    display: inherit;
-    justify-content: space-between;
-    padding: 15px 0;
-    align-items: center;
+  display: inherit;
+  justify-content: space-between;
+  padding: 15px 0;
+  align-items: center;
 }
 
 .caret {
-    border: none;
-    font-size: 15px;
-    font-weight: 600;
-    background-color: transparent;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  background-color: transparent;
+  transition: 0.3s ease-in;
+}
+
+.caret:hover {
+  cursor: pointer;
+  font-weight: bolder;
+  transition: 0.3s ease-in;
 }
 
 .left {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .right {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 
 .table-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 14px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 14px;
 }
 
 .table-header > tr {
-    font-size: 15px;
-    padding-bottom: 5px;
+  font-size: 15px;
+  padding-bottom: 5px;
+}
+
+.month-year {
+    font-size: 18px;
+    font-weight: bold;
+    transition: 0.2s ease-in;
+}
+
+.month-year:hover {
+    background-color: var(--disabled);
+    cursor: pointer;
+    transition: 0.2s ease-in;
+    padding: 0 10px;
 }
 
 .table-body {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 8px;
 }
 
 .table-body > tr {
-    display: flex;
-    justify-content: center;
-    padding: 5px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: 5px 0;
+}
+
+.table-item:hover {
+  cursor: pointer;
+}
+
+.disabled:hover {
+  cursor: none;
+}
+
+.table-item {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.selected {
+  border-radius: 50%;
+  background-color: var(--selected);
+  color: #ffffff;
+}
+
+.today {
+    color: var(--selected)
 }
