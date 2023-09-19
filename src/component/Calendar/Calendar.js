@@ -2,7 +2,7 @@ import React from "react";
 import DatePicker from "../DatePicker/DatePicker";
 import * as FaIcons from 'react-icons/fa'
 import "../Calendar/Calendar.css";
-import { getDays } from "../../helper/calendar";
+import { getDays, selectedDate } from "../../helper/calendar";
 
 const Calendar = () => {
   const [date, setDate] = React.useState(new Date());
@@ -20,16 +20,14 @@ const Calendar = () => {
     setDate(new Date(date.getFullYear(), date.getMonth() + 1));
   };
 
-  // Function to select a specific date
+  
   const onSelectDate = (day) => {
-    if(day){
-      setSelectedDay(day)
-    }
+    setSelectedDay(selectedDate(day))
   };
 
   return (
     <>
-      <DatePicker date={new Date}/>
+      <DatePicker date={date.toISOString().slice(2, 10)}/>
       <div className="calendar">
         <div className="calendar-header">
           <button className="caret left" onClick={prevMonth}>

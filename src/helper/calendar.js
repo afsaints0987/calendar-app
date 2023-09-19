@@ -1,5 +1,6 @@
 export const date = new Date()
 
+// Get the days of the current month
 export const getDays = (month = date.getMonth(), year = date.getFullYear()) => {
   const daysInMonth = [];
   const calendarCells = 42 - daysInMonth;
@@ -44,6 +45,11 @@ export const getDays = (month = date.getMonth(), year = date.getFullYear()) => {
   }
 
   return(daysInMonth);
+}
+
+// Function to select a specific date
+export const selectedDate = (day) => {
+    console.log(new Date())
 }
 
 export const getMonths = () => {
