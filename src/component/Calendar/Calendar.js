@@ -3,6 +3,8 @@ import DatePicker from "../DatePicker/DatePicker";
 import * as FaIcons from 'react-icons/fa'
 import "../Calendar/Calendar.css";
 import { getDays, getMonths, calendarMonths, calendarDays } from "../../helper/calendar";
+import Months from "../Table/Months";
+import Days from "../Table/Days";
 
 const Calendar = () => {
   const [date, setDate] = React.useState(new Date());
@@ -11,7 +13,6 @@ const Calendar = () => {
   const [selectedYear, setSelectedYear] = React.useState(false)
   const [selectedDay, setSelectedDay] = React.useState(null);
   
-
 
   // Get the previous month of the year
   const prevMonth = () => {
@@ -24,8 +25,8 @@ const Calendar = () => {
   };
 
   
-  const onSelectDate = (day) => {
-    setSelectedDay(day)
+  const onSelectDate = (index) => {
+    setSelectedDay(index)
   };
 
   return (
@@ -44,36 +45,10 @@ const Calendar = () => {
           </button>
         </div>
         <table className="calendar-table">
-          <thead className="table-header">
-            {calendarDays.map((wday, index) => (
-              <tr key={index}>
-                <th>{wday}</th>
-              </tr>
-            ))}
-          </thead>
-          <tbody className="table-body">
-            {getDays(date.getMonth(), date.getFullYear()).map(({ day, isCurrent, isToday }, index) => (
-              <tr key={index}>
-                <td
-                  className={`${!isCurrent ? "disabled" : ""} ${
-                    selectedDay === day && isCurrent ? "selected" : ""
-                  } ${isToday ? "today" : ""} table-item`}
-                  onClick={() => onSelectDate(day)}
-                >
-                  {day}
-                </td>
-              </tr>
-            ))}
-          </tbody>
+          <Days selected={selectedDay} onSelectDate={onSelectDate} date={date}/>
         </table>
         <table className="calendar-table">
-          <tbody className="calendar-months">
-            {getMonths().map((month, index) => (
-              <tr key={index}>
-                <td>{month}</td>
-              </tr>
-            )) }
-          </tbody>
+          <Months selected={selectedDay} onSelectDate={onSelectDate}/>
         </table>
       </div>
     </>

@@ -4,7 +4,7 @@ export const date = new Date()
 export const calendarDays = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
 
 // Calendar Months
-export const calendarMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dev']
+export const calendarMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
 // Get the days of the current month
 export const getDays = (month = date.getMonth(), year = date.getFullYear()) => {
@@ -65,12 +65,12 @@ export const getMonths = () => {
 
     for(let i = 0; i < calendarMonths.length; i++){
       let month = calendarMonths[i]
-      months.push(month)
+      months.push({month: month, currentMonth: i === date.getMonth()})
     }
 
     return months
 }
 
 export const getYears = () => {
-  console.log(date.getFullYear())
+  const years = []
 }
