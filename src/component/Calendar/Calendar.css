@@ -84,9 +84,9 @@
 
 .table-item {
   width: 30px;
-  height: 30px;
+  height: 20px;
   text-align: center;
-  vertical-align: middle;
+  
   cursor: pointer;
 }
 
@@ -94,8 +94,21 @@
   border-radius: 50%;
   background-color: var(--selected);
   color: #ffffff;
+  vertical-align: middle;
 }
 
 .today {
     color: var(--selected)
+}
+
+.calendar-months {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.calendar-months > tr {
+  display: flex;
+  justify-content: center;
+  margin: 15px 10px;
 }

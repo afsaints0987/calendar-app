@@ -1,5 +1,11 @@
 export const date = new Date()
 
+// Days of the week
+export const calendarDays = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
+
+// Calendar Months
+export const calendarMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dev']
+
 // Get the days of the current month
 export const getDays = (month = date.getMonth(), year = date.getFullYear()) => {
   const daysInMonth = [];
@@ -49,9 +55,22 @@ export const getDays = (month = date.getMonth(), year = date.getFullYear()) => {
 
 // Function to select a specific date
 export const selectedDate = (day) => {
-    console.log(new Date())
+    
 }
 
+
+
 export const getMonths = () => {
-    
+    const months = []
+
+    for(let i = 0; i < calendarMonths.length; i++){
+      let month = calendarMonths[i]
+      months.push(month)
+    }
+
+    return months
+}
+
+export const getYears = () => {
+  console.log(date.getFullYear())
 }

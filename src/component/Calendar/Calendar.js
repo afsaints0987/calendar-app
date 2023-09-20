@@ -2,12 +2,15 @@ import React from "react";
 import DatePicker from "../DatePicker/DatePicker";
 import * as FaIcons from 'react-icons/fa'
 import "../Calendar/Calendar.css";
-import { getDays, selectedDate } from "../../helper/calendar";
+import { getDays, getMonths, calendarMonths, calendarDays } from "../../helper/calendar";
 
 const Calendar = () => {
   const [date, setDate] = React.useState(new Date());
+  const [selectedDate, setSelectedDate] = React.useState(false)
+  const [selectedMonth, setSelectedMonth] = React.useState(false)
+  const [selectedYear, setSelectedYear] = React.useState(false)
   const [selectedDay, setSelectedDay] = React.useState(null);
-  const weekDays = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+  
 
 
   // Get the previous month of the year
@@ -22,19 +25,19 @@ const Calendar = () => {
 
   
   const onSelectDate = (day) => {
-    setSelectedDay(selectedDate(day))
+    setSelectedDay(day)
   };
 
   return (
     <>
-      <DatePicker date={date.toISOString().slice(2, 10)}/>
+      <DatePicker />
       <div className="calendar">
         <div className="calendar-header">
           <button className="caret left" onClick={prevMonth}>
             <FaIcons.FaChevronLeft />
           </button>
-          <span className="month-year">
-            {date.toLocaleString("en-us", { month: "short", year: "numeric" })}
+          <span className="month-year" onClick={getMonths}>
+            {`${calendarMonths[date.getMonth()]} ${date.getFullYear()}`}
           </span>
           <button className="caret right" onClick={nextMonth}>
             <FaIcons.FaChevronRight/>
@@ -42,7 +45,7 @@ const Calendar = () => {
         </div>
         <table className="calendar-table">
           <thead className="table-header">
-            {weekDays.map((wday, index) => (
+            {calendarDays.map((wday, index) => (
               <tr key={index}>
                 <th>{wday}</th>
               </tr>
@@ -61,6 +64,15 @@ const Calendar = () => {
                 </td>
               </tr>
             ))}
+          </tbody>
+        </table>
+        <table className="calendar-table">
+          <tbody className="calendar-months">
+            {getMonths().map((month, index) => (
+              <tr key={index}>
+                <td>{month}</td>
+              </tr>
+            )) }
           </tbody>
         </table>
       </div>
