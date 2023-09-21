@@ -91,7 +91,7 @@
 .selected {
   border-radius: 50%;
   background-color: var(--selected);
-  color: #ffffff;
+  color: #ffffff !important;
   vertical-align: middle;
 }
 
@@ -99,13 +99,20 @@
     color: var(--selected)
 }
 
-.calendar-months {
+.current {
+  border-radius: 50%;
+  background-color: var(--selected);
+  color: #ffffff !important;
+  vertical-align: middle;
+}
+
+.calendar-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);
 }
 
-.calendar-months > tr {
+.calendar-grid > tr {
   display: flex;
   justify-content: center;
   margin: 15px 10px;

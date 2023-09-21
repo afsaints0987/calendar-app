@@ -53,12 +53,6 @@ export const getDays = (month = date.getMonth(), year = date.getFullYear()) => {
   return(daysInMonth);
 }
 
-// Function to select a specific date
-export const selectedDate = (day) => {
-    
-}
-
-
 
 export const getMonths = () => {
     const months = []
@@ -71,6 +65,33 @@ export const getMonths = () => {
     return months
 }
 
-export const getYears = () => {
-  const years = []
+export const getYears = (startYear, endYear) => {
+  const rangeOfYears = [];
+
+  for (let year = startYear; year <= endYear; year++) {
+    rangeOfYears.push({yearToDate: year, isCurrent: year === date.getFullYear()});
+  }
+
+  return rangeOfYears;
+};
+
+
+// Set Calendar view to days, months or years
+export const calendarView = (mode, setViewMode) => {
+  switch(mode){
+    case "days":
+      setViewMode("days")
+      break;
+    case "months":
+      setViewMode("months")
+      break;
+    case "years": 
+      setViewMode("years");
+      break;
+    default:
+      break;
+  }
 }
+
+
+

@@ -1,56 +1,50 @@
 import React from "react";
 import DatePicker from "../DatePicker/DatePicker";
-import * as FaIcons from 'react-icons/fa'
 import "../Calendar/Calendar.css";
-import { getDays, getMonths, calendarMonths, calendarDays } from "../../helper/calendar";
+import { date, calendarView } from "../../helper/calendar";
 import Months from "../Table/Months";
 import Days from "../Table/Days";
+import Years from "../Table/Years";
 
 const Calendar = () => {
-  const [date, setDate] = React.useState(new Date());
-  const [selectedDate, setSelectedDate] = React.useState(false)
-  const [selectedMonth, setSelectedMonth] = React.useState(false)
-  const [selectedYear, setSelectedYear] = React.useState(false)
-  const [selectedDay, setSelectedDay] = React.useState(null);
-  
+  const [selectedDate, setSelectedDate] = React.useState(date)
+  const [viewMode, setViewMode] = React.useState("days")
 
-  // Get the previous month of the year
-  const prevMonth = () => {
-    setDate(new Date(date.getFullYear(), date.getMonth() - 1));
+  const handleViewMode = (mode) => {
+    calendarView(mode, setViewMode)
   };
 
-  // Get the next month of the year
-  const nextMonth = () => {
-    setDate(new Date(date.getFullYear(), date.getMonth() + 1));
+  const onSelectDate = (day) => {
+    setSelectedDate(day);
+    console.log(day);
   };
 
-  
-  const onSelectDate = (index) => {
-    setSelectedDay(index)
+  const onSelectMonth = (indexMonth) => {
+    console.log(indexMonth)
   };
+
 
   return (
     <>
-      <DatePicker />
-      <div className="calendar">
-        <div className="calendar-header">
-          <button className="caret left" onClick={prevMonth}>
-            <FaIcons.FaChevronLeft />
-          </button>
-          <span className="month-year" onClick={getMonths}>
-            {`${calendarMonths[date.getMonth()]} ${date.getFullYear()}`}
-          </span>
-          <button className="caret right" onClick={nextMonth}>
-            <FaIcons.FaChevronRight/>
-          </button>
-        </div>
-        <table className="calendar-table">
-          <Days selected={selectedDay} onSelectDate={onSelectDate} date={date}/>
-        </table>
-        <table className="calendar-table">
-          <Months selected={selectedDay} onSelectDate={onSelectDate}/>
-        </table>
-      </div>
+    <DatePicker/>
+    <div className="calendar">
+      {viewMode !== "days" ? null : <Days
+        selected={selectedDate}
+        onSelectDate={onSelectDate}
+        date={date}
+        changeView={() => handleViewMode("months")}
+      />}
+
+      {viewMode === "months" && 
+        <Months
+          selected={selectedDate}
+          onSelectDate={onSelectMonth}
+          date={date}
+          changeView={() => handleViewMode("years")}
+        />
+      }
+      {viewMode === "years" && <Years date={date}/>}
+    </div>
     </>
   );
 };
