@@ -1,6 +1,6 @@
 import React from "react";
 import { getYears } from "../../helper/calendar";
-import CalendarNav from "../CalendarNav";
+import CalendarNav from "../Calendar/CalendarNav";
 
 const Years = ({ onSelectDate, date }) => {
   const [yearDate, setYearDate] = React.useState(date);
@@ -8,7 +8,6 @@ const Years = ({ onSelectDate, date }) => {
   const currentYear = yearDate.getFullYear();
   const startYear = currentYear - 11;
   const endYear = currentYear;
-
 
   // Get the previous range of years
   const prevYearRange = () => {
@@ -37,7 +36,8 @@ const Years = ({ onSelectDate, date }) => {
               <td
                 className={`table-item ${isCurrent ? "current" : ""} ${
                   index === 0 || index === 11 ? "disabled" : ""
-                }`} onClick={() => onSelectDate(yearToDate)}
+                }`}
+                onClick={() => onSelectDate(yearToDate)}
               >
                 {yearToDate}
               </td>

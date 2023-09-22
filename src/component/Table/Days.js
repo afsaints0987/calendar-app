@@ -1,11 +1,10 @@
 import React from "react";
 import { calendarDays, calendarMonths, getDays } from "../../helper/calendar";
-import CalendarNav from "../CalendarNav";
+import CalendarNav from "../Calendar/CalendarNav";
 
-const Days = ({selected, onSelectDate, date, changeView}) => {
-  const [currentDate, setCurrentDate] = React.useState(date)
+const Days = ({ selected, onSelectDate, date, changeView }) => {
+  const [currentDate, setCurrentDate] = React.useState(date);
 
-  
   // Get the previous month's date
   const prevDate = () => {
     const previousMonth = currentDate.getMonth() - 1;
@@ -19,12 +18,13 @@ const Days = ({selected, onSelectDate, date, changeView}) => {
     const newDate = new Date(currentDate.getFullYear(), nextMonth);
     setCurrentDate(newDate);
   };
-  
 
   return (
     <>
       <CalendarNav
-        date={`${calendarMonths[currentDate.getMonth()]} ${currentDate.getFullYear()}`}
+        date={`${
+          calendarMonths[currentDate.getMonth()]
+        } ${currentDate.getFullYear()}`}
         prevArrow={prevDate}
         nextArrow={nextDate}
         handleView={changeView}
@@ -38,20 +38,18 @@ const Days = ({selected, onSelectDate, date, changeView}) => {
           ))}
         </thead>
         <tbody className="table-body">
-          {getDays().map(
-            ({ day, isCurrent, isToday }, index) => (
-              <tr key={index}>
-                <td
-                  className={`${!isCurrent ? "disabled" : ""} ${
-                    selected === day && isCurrent ? "selected" : ""
-                  } ${isToday ? "today" : ""} table-item`}
-                  onClick={() => onSelectDate(day)}
-                >
-                  {day}
-                </td>
-              </tr>
-            )
-          )}
+          {getDays().map(({ day, isCurrent, isToday }, index) => (
+            <tr key={index}>
+              <td
+                className={`${!isCurrent ? "disabled" : ""} ${
+                  selected === day && isCurrent ? "selected" : ""
+                } ${isToday ? "today" : ""} table-item`}
+                onClick={() => onSelectDate(day)}
+              >
+                {day}
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </>

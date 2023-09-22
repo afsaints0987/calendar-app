@@ -1,9 +1,17 @@
 import React from "react";
 import { getMonths } from "../../helper/calendar";
-import CalendarNav from "../CalendarNav";
+import CalendarNav from "../Calendar/CalendarNav";
 
-const Months = ({ selected, onSelectDate, date, changeView, setSelectedDate}) => {
-  const [currentYear, setCurrentYear] = React.useState(new Date(date.getFullYear(), 0))
+const Months = ({
+  selected,
+  onSelectDate,
+  date,
+  changeView,
+  setSelectedDate,
+}) => {
+  const [currentYear, setCurrentYear] = React.useState(
+    new Date(date.getFullYear(), 0)
+  );
 
   const prevYear = () => {
     const previousYear = currentYear.getFullYear() - 1;
@@ -26,7 +34,7 @@ const Months = ({ selected, onSelectDate, date, changeView, setSelectedDate}) =>
     setSelectedDate(newSelectedDate);
   };
 
-  console.log(getMonths())
+  console.log(getMonths());
 
   return (
     <>
@@ -38,7 +46,7 @@ const Months = ({ selected, onSelectDate, date, changeView, setSelectedDate}) =>
       />
       <table className="calendar-table">
         <tbody className="calendar-grid">
-          {getMonths().map(({ month, currentMonth}, index) => (
+          {getMonths().map(({ month, currentMonth }, index) => (
             <tr key={index}>
               <td
                 className={`${currentMonth ? "current" : ""} ${
