@@ -12,33 +12,33 @@ Welcome to my Calendar Aoo! This README provides step-by-step instructions on ho
 
 3. Clone the GitHub repository:
 
-   git clone https://github.com/afsaints0987/calendar-app.git
+   <code>git clone https://github.com/afsaints0987/calendar-app.git</code>
 
 ### Step 2: Install the Dependencies
 
 1. Navigate to the project directory
 
-    cd calendar-app
+    <code>cd calendar-app</code>
 
 2. Install the dependencies. Use one of the following commands based on your package manager:
 
     For npm:
-    npm install
+    <code>npm install</code>
 
     For yarn:
-    yarn install
+    <code>yarn install</code>
 
 ### Step 3: Start the Application
 
 1. To start the application, use the appopriate command:
 
     For npm:
-    npm run start -- For production
-    npm run dev -- For development
+    <code>npm run start</code> -- For production
+    <code>npm run dev</code> -- For development
 
     For yarn:
-    yarn start -- For production
-    yarn dev -- For development
+    <code>yarn start</code> -- For production
+    <code>yarn dev</code> -- For development
 
 2. The application should now be running, currently running to 
 
@@ -47,6 +47,7 @@ Welcome to my Calendar Aoo! This README provides step-by-step instructions on ho
 
 
 Have Fun with my App!!
+
 
 
 # API Documentation
