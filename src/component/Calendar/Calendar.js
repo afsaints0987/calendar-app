@@ -10,19 +10,34 @@ const Calendar = () => {
   const [selectedDate, setSelectedDate] = React.useState(date)
   const [viewMode, setViewMode] = React.useState("days")
 
+  React.useEffect(() => {
+    setSelectedDate(new Date(date))
+  },[])
+  
+
   const handleViewMode = (mode) => {
     calendarView(mode, setViewMode)
   };
 
   const onSelectDate = (day) => {
-    setSelectedDate(day);
     console.log(day);
+    setSelectedDate(day);
   };
 
   const onSelectMonth = (indexMonth) => {
     console.log(indexMonth)
+    if(indexMonth){
+      setSelectedDate(date.setMonth(indexMonth))
+    }
   };
 
+  const onSelectYear = (year) => {
+    console.log(year)
+    setSelectedDate(date.setFullYear(year))
+    handleViewMode("months")
+  }
+
+  console.log(selectedDate)
 
   return (
     <>
@@ -31,7 +46,7 @@ const Calendar = () => {
       {viewMode !== "days" ? null : <Days
         selected={selectedDate}
         onSelectDate={onSelectDate}
-        date={date}
+        date={selectedDate}
         changeView={() => handleViewMode("months")}
       />}
 
@@ -41,9 +56,10 @@ const Calendar = () => {
           onSelectDate={onSelectMonth}
           date={date}
           changeView={() => handleViewMode("years")}
+          setSelectedDate={setSelectedDate}
         />
       }
-      {viewMode === "years" && <Years date={date}/>}
+      {viewMode === "years" && <Years date={date} onSelectDate={onSelectYear}/>}
     </div>
     </>
   );

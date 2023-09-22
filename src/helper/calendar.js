@@ -53,7 +53,7 @@ export const getDays = (month = date.getMonth(), year = date.getFullYear()) => {
   return(daysInMonth);
 }
 
-
+// Get the calendar months of the year
 export const getMonths = () => {
     const months = []
 
@@ -64,7 +64,7 @@ export const getMonths = () => {
 
     return months
 }
-
+// Get the years based on the start and end of the year
 export const getYears = (startYear, endYear) => {
   const rangeOfYears = [];
 

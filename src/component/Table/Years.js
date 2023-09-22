@@ -28,6 +28,7 @@ const Years = ({ onSelectDate, date }) => {
         date={`${startYear + 1}-${endYear}`}
         prevArrow={prevYearRange}
         nextArrow={nextYearRange}
+        handleView={null}
       />
       <table className="calendar-table">
         <tbody className="calendar-grid">

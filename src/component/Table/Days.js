@@ -5,20 +5,21 @@ import CalendarNav from "../CalendarNav";
 const Days = ({selected, onSelectDate, date, changeView}) => {
   const [currentDate, setCurrentDate] = React.useState(date)
 
+  
+  // Get the previous month's date
   const prevDate = () => {
-    // Get the previous month's date
-    const prevMonthDate = new Date(currentDate);
-    prevMonthDate.setMonth(prevMonthDate.getMonth() - 1);
-    setCurrentDate(prevMonthDate);
+    const previousMonth = currentDate.getMonth() - 1;
+    const newDate = new Date(currentDate.getFullYear(), previousMonth);
+    setCurrentDate(newDate);
   };
 
+  // Get the next month's date
   const nextDate = () => {
-    // Get the next month's date
-    const nextMonthDate = new Date(currentDate);
-    nextMonthDate.setMonth(nextMonthDate.getMonth() + 1);
-    setCurrentDate(nextMonthDate);
+    const nextMonth = currentDate.getMonth() + 1;
+    const newDate = new Date(currentDate.getFullYear(), nextMonth);
+    setCurrentDate(newDate);
   };
-  const daysInMonth = getDays(currentDate.getMonth(), currentDate.getFullYear());
+  
 
   return (
     <>
@@ -37,7 +38,7 @@ const Days = ({selected, onSelectDate, date, changeView}) => {
           ))}
         </thead>
         <tbody className="table-body">
-          {daysInMonth.map(
+          {getDays().map(
             ({ day, isCurrent, isToday }, index) => (
               <tr key={index}>
                 <td
