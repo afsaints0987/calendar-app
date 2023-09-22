@@ -9,12 +9,16 @@ import Years from "../Table/Years";
 const Calendar = () => {
   const [selectedDate, setSelectedDate] = React.useState(date)
   const [viewMode, setViewMode] = React.useState("days")
+  const [showCalendar, setShowCalendar] = React.useState(false)
 
   React.useEffect(() => {
     setSelectedDate(new Date(date))
   },[])
-  
 
+  const handleShowCalendar = () => {
+    setShowCalendar(!showCalendar)
+  }
+  
   const handleViewMode = (mode) => {
     calendarView(mode, setViewMode)
   };
@@ -41,8 +45,9 @@ const Calendar = () => {
 
   return (
     <>
-    <DatePicker/>
-    <div className="calendar">
+    <DatePicker handleShowCalendar={handleShowCalendar} date={date.toISOString().slice(0, 10)}/>
+    {showCalendar ? (
+      <div className="calendar">
       {viewMode !== "days" ? null : <Days
         selected={selectedDate}
         onSelectDate={onSelectDate}
@@ -61,6 +66,7 @@ const Calendar = () => {
       }
       {viewMode === "years" && <Years date={date} onSelectDate={onSelectYear}/>}
     </div>
+    ): null}
     </>
   );
 };
