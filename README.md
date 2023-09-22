@@ -62,4 +62,3 @@ Have Fun with my App!!
 | `getYears(startYear, endYear)` | Function | N/A                                        | A function that returns an array of objects representing a range of years, from `startYear` to `endYear`, inclusive. Each object contains the year and a flag indicating if it's the current year.                 |
 | `calendarView(mode, setViewMode)` | Function | N/A                                   | A function that sets the calendar view mode based on the `mode` parameter ('days', 'months', or 'years') using the `setViewMode` function.                                  |
 
-You can copy and paste this table directly into your README.md file to provide clear documentation for each API, including its name, type, default value, and description.
