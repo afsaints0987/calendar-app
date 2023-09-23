@@ -1,17 +1,15 @@
-import React from 'react'
-import * as FcIcons from 'react-icons/fc'
-import '../DatePicker/DatePicker.css'
+import React from "react";
+import * as FcIcons from "react-icons/fc";
+import "../DatePicker/DatePicker.css";
 
-const DatePicker = ({ date , handleShowCalendar }) => {
-  const [dateValue, setDateValue] = React.useState("")
-
-  React.useEffect(() => {
-    setDateValue(date)
-  },[date])
-
-  const handleDateChange = (e) => {
-    const {value} = e.target
-    
+const DatePicker = ({
+  date,
+  handleShowCalendar,
+  handleDateChange,
+}) => {
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    handleDateChange(value);
   };
 
   return (
@@ -20,19 +18,24 @@ const DatePicker = ({ date , handleShowCalendar }) => {
         <FcIcons.FcCalendar
           id="calendar"
           className="calendar-icon"
-          onClick={handleShowCalendar}
+          onClick={() => {
+            handleShowCalendar();
+          }}
         />
         <input
           type="text"
           id="date"
           name="date"
           value={date}
-          onChange={handleDateChange}
-          onClick={handleShowCalendar}
+          onChange={handleInputChange}
+          onClick={() => {
+            handleShowCalendar();
+          }}
+          placeholder="YYYY-MM-DD"
         />
       </div>
     </div>
   );
 };
 
-export default DatePicker
+export default DatePicker;

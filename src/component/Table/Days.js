@@ -27,12 +27,6 @@ const Days = ({ onSelectDate, changeView, date, month }) => {
 
   const todayDate = new Date(currentYear, currentMonth, currentDay);
 
-  const daysInMonth = getDays(
-    currentDate.getMonth(),
-    currentDate.getFullYear()
-  );
-  console.log(daysInMonth);
-
   return (
     <>
       <CalendarNav

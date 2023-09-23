@@ -47,7 +47,6 @@ export const getDays = (month = date.getMonth(), year = date.getFullYear()) => {
       i >= startingDayIndex &&
       i < lastDateOfMonth.getDate() + startingDayIndex
     ) {
-      
       daysInMonth.push({
         month: calendarMonths[month],
         day: i - startingDayIndex + 1,
