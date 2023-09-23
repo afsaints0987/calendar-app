@@ -3,8 +3,15 @@ import * as FcIcons from 'react-icons/fc'
 import '../DatePicker/DatePicker.css'
 
 const DatePicker = ({ date , handleShowCalendar }) => {
-  const handleDateChange = () => {
-    console.log(this);
+  const [dateValue, setDateValue] = React.useState("")
+
+  React.useEffect(() => {
+    setDateValue(date)
+  },[date])
+
+  const handleDateChange = (e) => {
+    const {value} = e.target
+    
   };
 
   return (
@@ -18,6 +25,7 @@ const DatePicker = ({ date , handleShowCalendar }) => {
         <input
           type="text"
           id="date"
+          name="date"
           value={date}
           onChange={handleDateChange}
           onClick={handleShowCalendar}

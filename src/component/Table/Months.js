@@ -23,6 +23,7 @@ const Months = ({
     );
     setSelectedDate(newSelectedDate);
   };
+
   const nextYear = () => {
     const incomingYear = currentYear.getFullYear() + 1;
     setCurrentYear(new Date(incomingYear, 0));
@@ -34,7 +35,6 @@ const Months = ({
     setSelectedDate(newSelectedDate);
   };
 
-  console.log(getMonths());
 
   return (
     <>

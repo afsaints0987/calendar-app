@@ -1,10 +1,23 @@
-export const date = new Date()
+export const date = new Date();
 
 // Days of the week
-export const calendarDays = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
+export const calendarDays = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 
 // Calendar Months
-export const calendarMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+export const calendarMonths = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 
 // Get the days of the current month
 export const getDays = (month = date.getMonth(), year = date.getFullYear()) => {
@@ -26,72 +39,71 @@ export const getDays = (month = date.getMonth(), year = date.getFullYear()) => {
       // get the remaining days of the previous month
       const prevMonthLastDays = new Date(year, month, 0).getDate();
       daysInMonth.push({
+        month: calendarMonths[month - 1],
         day: prevMonthLastDays - (startingDayIndex - i - 1),
-        isCurrent: false
+        isCurrent: false,
       });
     } else if (
       i >= startingDayIndex &&
       i < lastDateOfMonth.getDate() + startingDayIndex
     ) {
-      // get the current month's dates
-        const currentDay = i - startingDayIndex + 1;
-
+      
       daysInMonth.push({
+        month: calendarMonths[month],
         day: i - startingDayIndex + 1,
-        isToday: currentDay === date.getDate() && month === date.getMonth() && year === date.getFullYear(),
-        isCurrent : true
+        isCurrent: true,
       });
     } else {
       // get the starting days of the next month
       daysInMonth.push({
+        month: calendarMonths[month + 1],
         day: i - (lastDateOfMonth.getDate() + startingDayIndex) + 1,
-        isCurrent : false
+        isCurrent: false,
       });
     }
   }
 
-  return(daysInMonth);
-}
+  return daysInMonth;
+};
 
 // Get the calendar months of the year
 export const getMonths = () => {
-    const months = []
+  const months = [];
 
-    for(let i = 0; i < calendarMonths.length; i++){
-      let month = calendarMonths[i]
-      months.push({month: month, currentMonth: i === date.getMonth()})
-    }
+  for (let i = 0; i < calendarMonths.length; i++) {
+    let month = calendarMonths[i];
+    months.push({ month: month, currentMonth: i === date.getMonth() });
+  }
 
-    return months
-}
+  return months;
+};
 // Get the years based on the start and end of the year
 export const getYears = (startYear, endYear) => {
   const rangeOfYears = [];
 
   for (let year = startYear; year <= endYear; year++) {
-    rangeOfYears.push({yearToDate: year, isCurrent: year === date.getFullYear()});
+    rangeOfYears.push({
+      yearToDate: year,
+      isCurrent: year === date.getFullYear(),
+    });
   }
 
   return rangeOfYears;
 };
 
-
 // Set Calendar view to days, months or years
 export const calendarView = (mode, setViewMode) => {
-  switch(mode){
+  switch (mode) {
     case "days":
-      setViewMode("days")
+      setViewMode("days");
       break;
     case "months":
-      setViewMode("months")
+      setViewMode("months");
       break;
-    case "years": 
+    case "years":
       setViewMode("years");
       break;
     default:
       break;
   }
-}
-
-
-
+};

@@ -2,22 +2,36 @@ import React from "react";
 import { calendarDays, calendarMonths, getDays } from "../../helper/calendar";
 import CalendarNav from "../Calendar/CalendarNav";
 
-const Days = ({ selected, onSelectDate, date, changeView }) => {
+const Days = ({ onSelectDate, changeView, date, month }) => {
   const [currentDate, setCurrentDate] = React.useState(date);
 
-  // Get the previous month's date
+  // Get previous month and year
   const prevDate = () => {
-    const previousMonth = currentDate.getMonth() - 1;
-    const newDate = new Date(currentDate.getFullYear(), previousMonth);
-    setCurrentDate(newDate);
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1)
+    );
   };
 
-  // Get the next month's date
+  // Get next month and year
   const nextDate = () => {
-    const nextMonth = currentDate.getMonth() + 1;
-    const newDate = new Date(currentDate.getFullYear(), nextMonth);
-    setCurrentDate(newDate);
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() + 1)
+    );
   };
+
+  const selectedDay = currentDate.getDate();
+  // Get the current date components
+  const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth();
+  const currentDay = new Date().getDate();
+
+  const todayDate = new Date(currentYear, currentMonth, currentDay);
+
+  const daysInMonth = getDays(
+    currentDate.getMonth(),
+    currentDate.getFullYear()
+  );
+  console.log(daysInMonth);
 
   return (
     <>
@@ -38,18 +52,31 @@ const Days = ({ selected, onSelectDate, date, changeView }) => {
           ))}
         </thead>
         <tbody className="table-body">
-          {getDays().map(({ day, isCurrent, isToday }, index) => (
-            <tr key={index}>
-              <td
-                className={`${!isCurrent ? "disabled" : ""} ${
-                  selected === day && isCurrent ? "selected" : ""
-                } ${isToday ? "today" : ""} table-item`}
-                onClick={() => onSelectDate(day)}
-              >
-                {day}
-              </td>
-            </tr>
-          ))}
+          {getDays(currentDate.getMonth(), currentDate.getFullYear()).map(
+            ({ day, isCurrent }, index) => (
+              <tr key={index}>
+                <td
+                  className={`${!isCurrent ? "disabled" : ""} ${
+                    selectedDay === day && isCurrent ? "selected" : ""
+                  } ${
+                    todayDate.toDateString() ===
+                    new Date(
+                      currentDate.getFullYear(),
+                      currentDate.getMonth(),
+                      day
+                    ).toDateString()
+                      ? "today"
+                      : ""
+                  } table-item `}
+                  onClick={() =>
+                    onSelectDate(day, (month = currentDate.getMonth()))
+                  }
+                >
+                  {day}
+                </td>
+              </tr>
+            )
+          )}
         </tbody>
       </table>
     </>
